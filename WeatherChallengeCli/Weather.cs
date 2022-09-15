@@ -60,7 +60,7 @@ namespace WeatherChallengeCli.Services
             catch (Exception ex)
             {
                 // Here we can also log to file the real exception "ex"
-                throw new Exception("GetWeatherForCity: error retrieving the weather forecast");
+                throw new Exception("ForecastRequest: error retrieving the weather forecast");
             }
 
             return null;
@@ -75,7 +75,7 @@ namespace WeatherChallengeCli.Services
         public class Coords
         {
             public double Latitude { get; set; }
-            public double Longitude { get; set; }           
+            public double Longitude { get; set; }
         }
     }
 

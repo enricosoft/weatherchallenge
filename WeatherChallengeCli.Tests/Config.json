@@ -1,6 +1,7 @@
 {
   "AppSettings": {
     // Put your Weather api code here
-    "WeatherApiKey": "XXXXXXXXXXXXXXXXXXXXXXXXX"
+    "WeatherApiKey": "XXXXXXXXXXXXXXXXXXXXXXXXX",
+    "MusementBaseApiUrl": "https://sandbox.musement.com"
   }
 }

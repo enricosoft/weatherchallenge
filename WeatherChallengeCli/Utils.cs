@@ -8,7 +8,7 @@ namespace WeatherChallengeCli
 
         /// <summary>
         /// Perform GET request to api url
-        /// </summary>        
+        /// </summary>
         public static async Task<string> ApiGet(string apiUrl)
         {
             using (HttpResponseMessage response = await httpClient.GetAsync(apiUrl))
@@ -27,7 +27,7 @@ namespace WeatherChallengeCli
 
         /// <summary>
         /// Get settings from Config.json file
-        /// </summary>        
+        /// </summary>
         public static IConfigurationRoot GetSettings()
         {
             var configuration = new ConfigurationBuilder()

@@ -26,5 +26,16 @@ namespace WeatherChallengeCli.Tests
             bool isValid = forecastResult != null && forecastResult.forecast.forecastday.Length == 2;
             Assert.IsTrue(isValid);
         }
+
+        [TestMethod]
+        public void TestCities()
+        {
+            var settings = Utils.GetSettings();
+            Cities c = new Cities(settings["AppSettings:MusementBaseApiUrl"]);
+            var citiesResult = c.Get().GetAwaiter().GetResult();
+
+            bool isValid = citiesResult != null && citiesResult.Cities.Length > 0;
+            Assert.IsTrue(isValid);
+        }
     }
 }
