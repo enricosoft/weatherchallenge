@@ -1,53 +1,30 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using WeatherChallengeCli.Services;
 
 namespace WeatherChallengeCli
 {
-    internal class Program
+    public class Program
     {
-        private readonly string musementBaseApiUrl = "https://sandbox.musement.com/api";
-        private readonly string weatherBaseApiUrl = "http://api.weatherapi.com";
-        private static string weatherApiKey;
-        private static HttpClient httpClient = new HttpClient();
-
         private static void Main(string[] args)
         {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("Config.json", false, true)
-                .Build();
+            var settings = Utils.GetSettings();
 
-            weatherApiKey = configuration["AppSettings:WeatherApiKey"];
-        }
+            var _citiesService = new Cities(settings["AppSettings:MusementBaseApiUrl"]);
+            var _weatherService = new Weather(settings["AppSettings:WeatherApiKey"]);
 
-        /// <summary>
-        /// Retrieve cities from TUI Musement api (only first page)
-        /// </summary>
-        private void GetCities()
-        {
-            string citiesApiUrl = $"{musementBaseApiUrl}/v3/cities";
-        }
-
-        /// <summary>
-        /// Retrieve weather forecast for given coords and for N days, starting from today
-        /// </summary>
-        private void GetWeatherForCity(CityCoords coords, int days = 1)
-        {
-            if (days <= 0)
+            /* TODO
+            var citiesList = _citiesService.Get();
+            _weatherService.Get(new Weather.ForecastRequest()
             {
-                throw new Exception($"{nameof(days)} parameter must be greater than zero");
-            }
-            if (coords == null)
-            {
-                throw new Exception($"{nameof(coords)} parameter must be filled");
-            }
+                coords = new Weather.ForecastRequest.Coords() {
+                    Latitude = 0,
+                    Longitude = 0
+                },
+                days = 2
+            }).GetAwaiter()
+              .GetResult();
+            */
 
-            string weatherForCityApiUrl = $"{weatherBaseApiUrl}/v1/forecast.json?key={weatherApiKey}&q={coords.Latitude},{coords.Longitude}&days={days}&aqi=no&alerts=no";
-        }
-
-        private class CityCoords
-        {
-            public double Latitude { get; set; }
-            public double Longitude { get; set; }
+            Console.ReadKey();
         }
     }
 }
