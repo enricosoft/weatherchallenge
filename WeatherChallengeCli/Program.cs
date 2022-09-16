@@ -26,10 +26,17 @@ namespace WeatherChallengeCli
                         days = 2
                     }).GetAwaiter().GetResult();
 
-                    string forecastDay1 = forecasts!.forecast.forecastday[0].day.condition.text;
-                    string forecastDay2 = forecasts!.forecast.forecastday[1].day.condition.text;
+                    if (forecasts != null)
+                    {
+                        string forecastDay1 = forecasts!.forecast.forecastday[0].day.condition.text;
+                        string forecastDay2 = forecasts!.forecast.forecastday[1].day.condition.text;
 
-                    Console.WriteLine($"Processed city {city.name} | {forecastDay1} - {forecastDay2}");
+                        Console.WriteLine($"Processed city {city.name} | {forecastDay1} - {forecastDay2}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error retrieving weather forecast for {city.name}");
+                    }
                 }
             }
             else
