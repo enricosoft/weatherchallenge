@@ -36,6 +36,7 @@
 - Open the project root folder using VS Code
 - At this point VS Code should open a pop-up that asks you to "Reopen in Container". 
   Click that button and VS Code will create the dev env for you.
+- Set your own "weatherapi.com" api key in the two "Config.json" files 
 - Open a terminal in VS Code and run the following commands:  
   > cd WeatherChallengeCli  
   > dotnet restore  
