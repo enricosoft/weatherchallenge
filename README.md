@@ -59,8 +59,17 @@ CASE FAIL:
 	"error_message": "this is the description of the error"
 }
 ```
+
+**Behaviour:**
+- City "id" is validated
+- Validate the correct format the dates
+- Save into db the forecasts
+- If everything is ok (no exceptions), answer as Success payload, otherwise Fail payload.  
+
+<br/>
+<br/>
   
-  
+
 2) Api to get the weather forecast for a specific city within a range of dates.   
    The request payload and the response are in JSON format.  
    N.B.: the data are retrieved from Musement db, not from weatherapi.com api.  
@@ -71,7 +80,7 @@ CASE FAIL:
 ```
 {
 	"from_date": "2022-09-17",
-	"to_date": "2022-09-18"
+	"to_date": "2022-09-19"
 }
 ```
 
@@ -93,6 +102,10 @@ CASE SUCCESS:
 			{
 				"date": "2022-09-18",
 				"forecast": "Sunny"
+			},
+			{
+				"date": "2022-09-19",
+				"forecast": null
 			}
 		]
 	}
@@ -107,6 +120,16 @@ CASE FAIL:
 	"data": null
 }
 ```
+
+**Behaviour:**
+- City "id" is validated
+- Validate the date range (for instance: the "to_date" must be equal or greater that "from_date", date are in valid format)
+- Query the Db to get the forecast for the specified dates.
+- If forecast for a specific date was not been saved into db, the "forecast" value will be null.
+- If everything is ok (no exceptions), answer as Success payload, otherwise Fail payload.  
+  
+<br/>
+<br/>
 
 -------------------------------------
 
