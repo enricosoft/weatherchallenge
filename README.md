@@ -21,7 +21,92 @@
 
 ### [STEP2]
 
-*TODO*
+1) Api to set the weather forecast for a specific city and dates. The data are saved into Musement Db.  
+   The request payload and the response are in JSON format.  
+
+*POST /api/v3/cities/{id}/weatherforecast*
+
+**Request Payload:**
+```
+{
+	"forecasts": [
+		{
+			"date": "2022-09-17",
+			"forecast": "Rainy"
+		},
+		{
+			"date": "2022-09-18",
+			"forecast": "Sunny"
+		}
+	]
+}
+```
+
+**Response types:**
+
+CASE SUCCESS:
+```
+{
+	"success": true,
+	"error_message": ""
+}
+```
+
+CASE FAIL:
+```
+{
+	"success": false,
+	"error_message": "this is the description of the error"
+}
+```
+  
+  
+2) Api to get the weather forecast for a specific city within a range of dates.   
+   The request payload and the response are in JSON format.  
+   N.B.: the data are retrieved from Musement db, not from weatherapi.com api.  
+
+*GET /api/v3/cities/{id}/weatherforecast*
+
+**Request Payload:**
+```
+{
+	"from_date": "2022-09-17",
+	"to_date": "2022-09-18"
+}
+```
+
+**Response types:**
+
+CASE SUCCESS:
+```
+{
+	"success": true,
+	"error_message": "",
+	"data": {
+		"city_id": "14",
+		"city_name": "Milan",
+		"forecasts": [
+			{
+				"date": "2022-09-17",
+				"forecast": "Rainy"
+			},
+			{
+				"date": "2022-09-18",
+				"forecast": "Sunny"
+			}
+		]
+	}
+}
+```
+
+CASE FAIL:
+```
+{
+	"success": false,
+	"error_message": "this is the description of the error",
+	"data": null
+}
+```
 
 -------------------------------------
 
